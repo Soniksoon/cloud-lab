@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Облачное приложение</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .description {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            height: 120px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #333;
+            color: white;
+            cursor: pointer;
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .date {
+            color: #888;
+            font-size: 12px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Облачное приложение</h1>
+
+    <p class="description">
+        Система хранения пользовательских сообщений
+    </p>
+
+    <form method="POST">
+
+        <label for="name">
+            Имя
+        </label>
+
+        <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="Введите имя"
+        >
+
+        <label for="message">
+            Сообщение
+        </label>
+
+        <textarea
+            id="message"
+            name="message"
+            required
+            placeholder="Введите сообщение"
+        ></textarea>
+
+        <button type="submit">
+            Сохранить
+        </button>
+
+    </form>
+
+    <h2>
+        Сохранённые сообщения
+    </h2>
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="message">
+
+                <strong>
+                    {{ message["name"] }}
+                </strong>
+
+                <p>
+                    {{ message["message"] }}
+                </p>
+
+                <div class="date">
+                    {{ message["created_at"] }}
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>
+            Пока нет сохранённых сообщений.
+        </p>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>
