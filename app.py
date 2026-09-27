@@ -12,7 +12,12 @@ SQLITE_DATABASE = "cloud_lab.db"
 def get_db_connection():
     if DATABASE_URL:
         import psycopg2
-        return psycopg2.connect(DATABASE_URL)
+        from psycopg2.extras import RealDictCursor
+
+        return psycopg2.connect(
+            DATABASE_URL,
+            cursor_factory=RealDictCursor
+        )
 
     connection = sqlite3.connect(SQLITE_DATABASE)
     connection.row_factory = sqlite3.Row
